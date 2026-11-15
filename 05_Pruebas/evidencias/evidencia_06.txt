@@ -1,0 +1,46 @@
+=== ESCENARIO 6: Crear con precio negativo ===
+
+[REST] POST -> http://localhost:8080/gestion_motocicletas/api/motocicletas
+--- SOLICITUD ---
+{
+  "marca": "Yamaha",
+  "modelo": "R15",
+  "anio": 2024,
+  "cilindraje": 155,
+  "precio": -500,
+  "stock": 1,
+  "estado": "Disponible"
+}
+--- RESPUESTA (HTTP 400) ---
+{
+  "statusCode": 400,
+  "date": "2026-11-15T23:00:38.766Z",
+  "message": "precio: El precio no puede ser negativo",
+  "description": "uri=/gestion_motocicletas/api/motocicletas"
+}
+Estado: APROBADO | HTTP 400: El precio no puede ser negativo
+
+[SOAP] POST (crearMotocicleta) -> http://localhost:8080/gestion_motocicletas/ws
+--- SOLICITUD ---
+<?xml version="1.0" encoding="UTF-8"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="urn:MotocicletasService">
+  <soap:Header/>
+  <soap:Body>
+    <ser:crearMotocicleta>
+      <marca>Yamaha</marca><modelo>R15</modelo><anio>2024</anio><cilindraje>155</cilindraje>
+      <precio>-500</precio><stock>1</stock><estado>Disponible</estado>
+    </ser:crearMotocicleta>
+  </soap:Body>
+</soap:Envelope>
+--- RESPUESTA (HTTP 500) ---
+<?xml version="1.0" ?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+  <SOAP-ENV:Header/>
+  <SOAP-ENV:Body>
+    <SOAP-ENV:Fault>
+      <faultcode>SOAP-ENV:Client</faultcode>
+      <faultstring xml:lang="en">El precio no puede ser negativo</faultstring>
+    </SOAP-ENV:Fault>
+  </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
+Estado: APROBADO | HTTP 500 SOAP Fault (Client): El precio no puede ser negativo

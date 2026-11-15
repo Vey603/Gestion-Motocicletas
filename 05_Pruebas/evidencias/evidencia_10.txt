@@ -1,0 +1,27 @@
+=== ESCENARIO 10: Eliminar una motocicleta existente ===
+
+[REST] DELETE -> http://localhost:8080/gestion_motocicletas/api/motocicletas/6
+--- RESPUESTA (HTTP 204) ---
+(Sin cuerpo de respuesta - 204 No Content)
+Estado: APROBADO | HTTP 204: Registro eliminado sin cuerpo de respuesta
+
+[SOAP] POST (eliminarMotocicleta) -> http://localhost:8080/gestion_motocicletas/ws
+--- SOLICITUD ---
+<?xml version="1.0" encoding="UTF-8"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="urn:MotocicletasService">
+  <soap:Header/>
+  <soap:Body>
+    <ser:eliminarMotocicleta><id_motocicleta>7</id_motocicleta></ser:eliminarMotocicleta>
+  </soap:Body>
+</soap:Envelope>
+--- RESPUESTA (HTTP 200) ---
+<?xml version="1.0" ?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+  <SOAP-ENV:Header/>
+  <SOAP-ENV:Body>
+    <ns3:eliminarMotocicletaResponse xmlns:ns3="urn:MotocicletasService">
+      <mensaje>Motocicleta eliminada correctamente</mensaje>
+    </ns3:eliminarMotocicletaResponse>
+  </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
+Estado: APROBADO | HTTP 200: Motocicleta eliminada correctamente

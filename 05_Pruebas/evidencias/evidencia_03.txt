@@ -1,0 +1,33 @@
+=== ESCENARIO 3: Consultar un ID inexistente ===
+
+[REST] GET -> http://localhost:8080/gestion_motocicletas/api/motocicletas/9999
+--- RESPUESTA (HTTP 404) ---
+{
+  "statusCode": 404,
+  "date": "2026-11-15T23:00:38.241Z",
+  "message": "No existe una motocicleta con el ID 9999",
+  "description": "uri=/gestion_motocicletas/api/motocicletas/9999"
+}
+Estado: APROBADO | HTTP 404: No existe una motocicleta con el ID 9999
+
+[SOAP] POST (obtenerMotocicleta) -> http://localhost:8080/gestion_motocicletas/ws
+--- SOLICITUD ---
+<?xml version="1.0" encoding="UTF-8"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="urn:MotocicletasService">
+  <soap:Header/>
+  <soap:Body>
+    <ser:obtenerMotocicleta><id_motocicleta>9999</id_motocicleta></ser:obtenerMotocicleta>
+  </soap:Body>
+</soap:Envelope>
+--- RESPUESTA (HTTP 500) ---
+<?xml version="1.0" ?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+  <SOAP-ENV:Header/>
+  <SOAP-ENV:Body>
+    <SOAP-ENV:Fault>
+      <faultcode>SOAP-ENV:Client</faultcode>
+      <faultstring xml:lang="en">No existe una motocicleta con el ID 9999</faultstring>
+    </SOAP-ENV:Fault>
+  </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
+Estado: APROBADO | HTTP 500 SOAP Fault (Client): No existe una motocicleta con el ID 9999

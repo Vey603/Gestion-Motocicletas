@@ -1,0 +1,38 @@
+=== ESCENARIO 14: Ejecutar una petición con datos mal formados ===
+
+[REST] POST -> http://localhost:8080/gestion_motocicletas/api/motocicletas
+--- SOLICITUD ---
+{ "marca": "Yamaha", "modelo": "MT-03", "anio": "no-numerico" 
+--- RESPUESTA (HTTP 400) ---
+{
+  "statusCode": 400,
+  "date": "2026-11-15T23:00:39.194Z",
+  "message": "El cuerpo de la solicitud no es válido o tiene un formato incorrecto",
+  "description": "uri=/gestion_motocicletas/api/motocicletas"
+}
+Estado: APROBADO | HTTP 400: El cuerpo de la solicitud no es válido o tiene un formato incorrecto
+
+[SOAP] POST (crearMotocicleta) -> http://localhost:8080/gestion_motocicletas/ws
+--- SOLICITUD ---
+<?xml version="1.0" encoding="UTF-8"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="urn:MotocicletasService">
+  <soap:Header/>
+  <soap:Body>
+    <ser:crearMotocicleta>
+      <marca>Yamaha</marca><modelo>MT-03</modelo><anio>no-numerico</anio>
+      <cilindraje>321</cilindraje><precio>27000000</precio><stock>1</stock><estado>Disponible</estado>
+    </ser:crearMotocicleta>
+  </soap:Body>
+</soap:Envelope>
+--- RESPUESTA (HTTP 500) ---
+<?xml version="1.0" ?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+  <SOAP-ENV:Header/>
+  <SOAP-ENV:Body>
+    <SOAP-ENV:Fault>
+      <faultcode>SOAP-ENV:Client</faultcode>
+      <faultstring xml:lang="en">El año es obligatorio</faultstring>
+    </SOAP-ENV:Fault>
+  </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
+Estado: APROBADO | HTTP 500 SOAP Fault (Client): Mensaje seguro sin traza SQL/JAXB interna

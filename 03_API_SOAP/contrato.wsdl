@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                  xmlns:tns="urn:MotocicletasService"
+                  targetNamespace="urn:MotocicletasService"
+                  name="MotocicletasService">
+
+    <wsdl:types>
+        <xsd:schema targetNamespace="urn:MotocicletasService"
+                    elementFormDefault="unqualified">
+
+            <xsd:simpleType name="EstadoMotocicleta">
+                <xsd:restriction base="xsd:string">
+                    <xsd:enumeration value="Disponible"/>
+                    <xsd:enumeration value="Agotada"/>
+                    <xsd:enumeration value="Inactiva"/>
+                </xsd:restriction>
+            </xsd:simpleType>
+
+            <xsd:complexType name="Motocicleta">
+                <xsd:sequence>
+                    <xsd:element name="id_motocicleta" type="xsd:int" minOccurs="0"/>
+                    <xsd:element name="marca" type="xsd:string"/>
+                    <xsd:element name="modelo" type="xsd:string"/>
+                    <xsd:element name="anio" type="xsd:int"/>
+                    <xsd:element name="cilindraje" type="xsd:int"/>
+                    <xsd:element name="precio" type="xsd:decimal"/>
+                    <xsd:element name="stock" type="xsd:int"/>
+                    <xsd:element name="estado" type="tns:EstadoMotocicleta"/>
+                    <xsd:element name="fecha_registro" type="xsd:string" minOccurs="0"/>
+                </xsd:sequence>
+            </xsd:complexType>
+
+            <xsd:element name="obtenerMotocicletas">
+                <xsd:complexType>
+                    <xsd:sequence/>
+                </xsd:complexType>
+            </xsd:element>
+
+            <xsd:element name="obtenerMotocicletasResponse">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="motocicletas" minOccurs="0">
+                            <xsd:complexType>
+                                <xsd:sequence>
+                                    <xsd:element name="motocicleta" type="tns:Motocicleta"
+                                                 minOccurs="0" maxOccurs="unbounded"/>
+                                </xsd:sequence>
+                            </xsd:complexType>
+                        </xsd:element>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+
+            <xsd:element name="obtenerMotocicleta">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="id_motocicleta" type="xsd:int"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+
+            <xsd:element name="obtenerMotocicletaResponse">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="motocicleta" type="tns:Motocicleta"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+
+            <xsd:element name="crearMotocicleta">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="marca" type="xsd:string"/>
+                        <xsd:element name="modelo" type="xsd:string"/>
+                        <xsd:element name="anio" type="xsd:int"/>
+                        <xsd:element name="cilindraje" type="xsd:int"/>
+                        <xsd:element name="precio" type="xsd:decimal"/>
+                        <xsd:element name="stock" type="xsd:int"/>
+                        <xsd:element name="estado" type="tns:EstadoMotocicleta"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+
+            <xsd:element name="crearMotocicletaResponse">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="mensaje" type="xsd:string"/>
+                        <xsd:element name="id_motocicleta" type="xsd:int"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+
+            <xsd:element name="actualizarMotocicleta">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="id_motocicleta" type="xsd:int"/>
+                        <xsd:element name="marca" type="xsd:string"/>
+                        <xsd:element name="modelo" type="xsd:string"/>
+                        <xsd:element name="anio" type="xsd:int"/>
+                        <xsd:element name="cilindraje" type="xsd:int"/>
+                        <xsd:element name="precio" type="xsd:decimal"/>
+                        <xsd:element name="stock" type="xsd:int"/>
+                        <xsd:element name="estado" type="tns:EstadoMotocicleta"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+
+            <xsd:element name="actualizarMotocicletaResponse">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="mensaje" type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+
+            <xsd:element name="eliminarMotocicleta">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="id_motocicleta" type="xsd:int"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+
+            <xsd:element name="eliminarMotocicletaResponse">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="mensaje" type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+
+        </xsd:schema>
+    </wsdl:types>
+
+    <wsdl:message name="obtenerMotocicletasRequest">
+        <wsdl:part name="parameters" element="tns:obtenerMotocicletas"/>
+    </wsdl:message>
+    <wsdl:message name="obtenerMotocicletasResponse">
+        <wsdl:part name="parameters" element="tns:obtenerMotocicletasResponse"/>
+    </wsdl:message>
+
+    <wsdl:message name="obtenerMotocicletaRequest">
+        <wsdl:part name="parameters" element="tns:obtenerMotocicleta"/>
+    </wsdl:message>
+    <wsdl:message name="obtenerMotocicletaResponse">
+        <wsdl:part name="parameters" element="tns:obtenerMotocicletaResponse"/>
+    </wsdl:message>
+
+    <wsdl:message name="crearMotocicletaRequest">
+        <wsdl:part name="parameters" element="tns:crearMotocicleta"/>
+    </wsdl:message>
+    <wsdl:message name="crearMotocicletaResponse">
+        <wsdl:part name="parameters" element="tns:crearMotocicletaResponse"/>
+    </wsdl:message>
+
+    <wsdl:message name="actualizarMotocicletaRequest">
+        <wsdl:part name="parameters" element="tns:actualizarMotocicleta"/>
+    </wsdl:message>
+    <wsdl:message name="actualizarMotocicletaResponse">
+        <wsdl:part name="parameters" element="tns:actualizarMotocicletaResponse"/>
+    </wsdl:message>
+
+    <wsdl:message name="eliminarMotocicletaRequest">
+        <wsdl:part name="parameters" element="tns:eliminarMotocicleta"/>
+    </wsdl:message>
+    <wsdl:message name="eliminarMotocicletaResponse">
+        <wsdl:part name="parameters" element="tns:eliminarMotocicletaResponse"/>
+    </wsdl:message>
+
+    <wsdl:portType name="MotocicletasPort">
+        <wsdl:operation name="obtenerMotocicletas">
+            <wsdl:input message="tns:obtenerMotocicletasRequest"/>
+            <wsdl:output message="tns:obtenerMotocicletasResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="obtenerMotocicleta">
+            <wsdl:input message="tns:obtenerMotocicletaRequest"/>
+            <wsdl:output message="tns:obtenerMotocicletaResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="crearMotocicleta">
+            <wsdl:input message="tns:crearMotocicletaRequest"/>
+            <wsdl:output message="tns:crearMotocicletaResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="actualizarMotocicleta">
+            <wsdl:input message="tns:actualizarMotocicletaRequest"/>
+            <wsdl:output message="tns:actualizarMotocicletaResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="eliminarMotocicleta">
+            <wsdl:input message="tns:eliminarMotocicletaRequest"/>
+            <wsdl:output message="tns:eliminarMotocicletaResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+
+    <wsdl:binding name="MotocicletasBinding" type="tns:MotocicletasPort">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+        <wsdl:operation name="obtenerMotocicletas">
+            <soap:operation soapAction=""/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+
+        <wsdl:operation name="obtenerMotocicleta">
+            <soap:operation soapAction=""/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+
+        <wsdl:operation name="crearMotocicleta">
+            <soap:operation soapAction=""/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+
+        <wsdl:operation name="actualizarMotocicleta">
+            <soap:operation soapAction=""/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+
+        <wsdl:operation name="eliminarMotocicleta">
+            <soap:operation soapAction=""/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+
+    <wsdl:service name="MotocicletasService">
+        <wsdl:port name="MotocicletasPort" binding="tns:MotocicletasBinding">
+            <soap:address location="http://localhost:8080/gestion_motocicletas/ws"/>
+        </wsdl:port>
+    </wsdl:service>
+
+</wsdl:definitions>

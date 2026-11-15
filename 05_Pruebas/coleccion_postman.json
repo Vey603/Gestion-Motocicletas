@@ -1,0 +1,1023 @@
+{
+  "info": {
+    "name": "Gestion_Motocicletas_REST_y_SOAP",
+    "description": "Colección oficial de pruebas (14 escenarios obligatorios + WSDL + interoperabilidad) para los servicios REST y SOAP.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "01_API_REST",
+      "item": [
+        {
+          "name": "01. Consultar todas (GET)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/gestion_motocicletas/api/motocicletas",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "gestion_motocicletas",
+                "api",
+                "motocicletas"
+              ]
+            }
+          }
+        },
+        {
+          "name": "02. Consultar ID válido - 2 (GET)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/gestion_motocicletas/api/motocicletas/2",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "gestion_motocicletas",
+                "api",
+                "motocicletas",
+                "2"
+              ]
+            }
+          }
+        },
+        {
+          "name": "03. Consultar ID inexistente - 9999 (GET)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/gestion_motocicletas/api/motocicletas/9999",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "gestion_motocicletas",
+                "api",
+                "motocicletas",
+                "9999"
+              ]
+            }
+          }
+        },
+        {
+          "name": "04. Crear motocicleta válida (POST)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/gestion_motocicletas/api/motocicletas",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "gestion_motocicletas",
+                "api",
+                "motocicletas"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"marca\": \"Kawasaki\",\n  \"modelo\": \"Z400\",\n  \"anio\": 2025,\n  \"cilindraje\": 399,\n  \"precio\": 28500000,\n  \"stock\": 2,\n  \"estado\": \"Disponible\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "05. Crear marca vacía - 400 (POST)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/gestion_motocicletas/api/motocicletas",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "gestion_motocicletas",
+                "api",
+                "motocicletas"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"marca\": \"\",\n  \"modelo\": \"X\",\n  \"anio\": 2024,\n  \"cilindraje\": 150,\n  \"precio\": 8000000,\n  \"stock\": 1,\n  \"estado\": \"Disponible\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "06. Crear precio negativo - 400 (POST)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/gestion_motocicletas/api/motocicletas",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "gestion_motocicletas",
+                "api",
+                "motocicletas"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"marca\": \"Yamaha\",\n  \"modelo\": \"R15\",\n  \"anio\": 2024,\n  \"cilindraje\": 155,\n  \"precio\": -500,\n  \"stock\": 1,\n  \"estado\": \"Disponible\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "07. Crear stock negativo - 400 (POST)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/gestion_motocicletas/api/motocicletas",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "gestion_motocicletas",
+                "api",
+                "motocicletas"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"marca\": \"Yamaha\",\n  \"modelo\": \"R15\",\n  \"anio\": 2024,\n  \"cilindraje\": 155,\n  \"precio\": 12000000,\n  \"stock\": -2,\n  \"estado\": \"Disponible\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "08. Actualizar existente - 6 (PUT)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/gestion_motocicletas/api/motocicletas/6",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "gestion_motocicletas",
+                "api",
+                "motocicletas",
+                "6"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"marca\": \"Kawasaki\",\n  \"modelo\": \"Z400 ABS\",\n  \"anio\": 2025,\n  \"cilindraje\": 399,\n  \"precio\": 29500000,\n  \"stock\": 4,\n  \"estado\": \"Disponible\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "09. Actualizar ID inexistente - 9999 (PUT)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/gestion_motocicletas/api/motocicletas/9999",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "gestion_motocicletas",
+                "api",
+                "motocicletas",
+                "9999"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"marca\": \"Yamaha\",\n  \"modelo\": \"R15\",\n  \"anio\": 2024,\n  \"cilindraje\": 155,\n  \"precio\": 12000000,\n  \"stock\": 1,\n  \"estado\": \"Disponible\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "10. Eliminar existente - 6 (DELETE)",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/gestion_motocicletas/api/motocicletas/6",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "gestion_motocicletas",
+                "api",
+                "motocicletas",
+                "6"
+              ]
+            }
+          }
+        },
+        {
+          "name": "11. Eliminar ID inexistente - 9999 (DELETE)",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/gestion_motocicletas/api/motocicletas/9999",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "gestion_motocicletas",
+                "api",
+                "motocicletas",
+                "9999"
+              ]
+            }
+          }
+        },
+        {
+          "name": "14. Datos mal formados - 400 (POST)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/gestion_motocicletas/api/motocicletas",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "gestion_motocicletas",
+                "api",
+                "motocicletas"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{ \"marca\": \"Yamaha\", \"anio\": \"abc\" ",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "02_Servicio_SOAP",
+      "item": [
+        {
+          "name": "00. Consultar Contrato WSDL",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:8080/gestion_motocicletas/ws/motocicletas.wsdl",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "gestion_motocicletas",
+                "ws",
+                "motocicletas.wsdl"
+              ]
+            }
+          }
+        },
+        {
+          "name": "01. obtenerMotocicletas",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "text/xml; charset=utf-8"
+              },
+              {
+                "key": "Accept",
+                "value": "text/xml"
+              },
+              {
+                "key": "SOAPAction",
+                "value": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ser=\"urn:MotocicletasService\">\n  <soap:Header/>\n  <soap:Body>\n    <ser:obtenerMotocicletas/>\n  </soap:Body>\n</soap:Envelope>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/gestion_motocicletas/ws",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "gestion_motocicletas",
+                "ws"
+              ]
+            }
+          }
+        },
+        {
+          "name": "02. obtenerMotocicleta (ID 2)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "text/xml; charset=utf-8"
+              },
+              {
+                "key": "Accept",
+                "value": "text/xml"
+              },
+              {
+                "key": "SOAPAction",
+                "value": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ser=\"urn:MotocicletasService\">\n  <soap:Header/>\n  <soap:Body>\n    <ser:obtenerMotocicleta><id_motocicleta>2</id_motocicleta></ser:obtenerMotocicleta>\n  </soap:Body>\n</soap:Envelope>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/gestion_motocicletas/ws",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "gestion_motocicletas",
+                "ws"
+              ]
+            }
+          }
+        },
+        {
+          "name": "03. obtenerMotocicleta inexistente (ID 9999)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "text/xml; charset=utf-8"
+              },
+              {
+                "key": "Accept",
+                "value": "text/xml"
+              },
+              {
+                "key": "SOAPAction",
+                "value": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ser=\"urn:MotocicletasService\">\n  <soap:Header/>\n  <soap:Body>\n    <ser:obtenerMotocicleta><id_motocicleta>9999</id_motocicleta></ser:obtenerMotocicleta>\n  </soap:Body>\n</soap:Envelope>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/gestion_motocicletas/ws",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "gestion_motocicletas",
+                "ws"
+              ]
+            }
+          }
+        },
+        {
+          "name": "04. crearMotocicleta válida",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "text/xml; charset=utf-8"
+              },
+              {
+                "key": "Accept",
+                "value": "text/xml"
+              },
+              {
+                "key": "SOAPAction",
+                "value": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ser=\"urn:MotocicletasService\">\n  <soap:Header/>\n  <soap:Body>\n    <ser:crearMotocicleta><marca>KTM</marca><modelo>Duke 200</modelo><anio>2025</anio><cilindraje>200</cilindraje><precio>16800000</precio><stock>3</stock><estado>Disponible</estado></ser:crearMotocicleta>\n  </soap:Body>\n</soap:Envelope>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/gestion_motocicletas/ws",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "gestion_motocicletas",
+                "ws"
+              ]
+            }
+          }
+        },
+        {
+          "name": "05. crearMotocicleta marca vacía (Fault)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "text/xml; charset=utf-8"
+              },
+              {
+                "key": "Accept",
+                "value": "text/xml"
+              },
+              {
+                "key": "SOAPAction",
+                "value": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ser=\"urn:MotocicletasService\">\n  <soap:Header/>\n  <soap:Body>\n    <ser:crearMotocicleta><marca></marca><modelo>X</modelo><anio>2024</anio><cilindraje>150</cilindraje><precio>8000000</precio><stock>1</stock><estado>Disponible</estado></ser:crearMotocicleta>\n  </soap:Body>\n</soap:Envelope>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/gestion_motocicletas/ws",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "gestion_motocicletas",
+                "ws"
+              ]
+            }
+          }
+        },
+        {
+          "name": "06. crearMotocicleta precio negativo (Fault)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "text/xml; charset=utf-8"
+              },
+              {
+                "key": "Accept",
+                "value": "text/xml"
+              },
+              {
+                "key": "SOAPAction",
+                "value": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ser=\"urn:MotocicletasService\">\n  <soap:Header/>\n  <soap:Body>\n    <ser:crearMotocicleta><marca>Yamaha</marca><modelo>R15</modelo><anio>2024</anio><cilindraje>155</cilindraje><precio>-500</precio><stock>1</stock><estado>Disponible</estado></ser:crearMotocicleta>\n  </soap:Body>\n</soap:Envelope>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/gestion_motocicletas/ws",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "gestion_motocicletas",
+                "ws"
+              ]
+            }
+          }
+        },
+        {
+          "name": "07. crearMotocicleta stock negativo (Fault)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "text/xml; charset=utf-8"
+              },
+              {
+                "key": "Accept",
+                "value": "text/xml"
+              },
+              {
+                "key": "SOAPAction",
+                "value": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ser=\"urn:MotocicletasService\">\n  <soap:Header/>\n  <soap:Body>\n    <ser:crearMotocicleta><marca>Yamaha</marca><modelo>R15</modelo><anio>2024</anio><cilindraje>155</cilindraje><precio>12000000</precio><stock>-2</stock><estado>Disponible</estado></ser:crearMotocicleta>\n  </soap:Body>\n</soap:Envelope>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/gestion_motocicletas/ws",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "gestion_motocicletas",
+                "ws"
+              ]
+            }
+          }
+        },
+        {
+          "name": "08. actualizarMotocicleta (ID 6)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "text/xml; charset=utf-8"
+              },
+              {
+                "key": "Accept",
+                "value": "text/xml"
+              },
+              {
+                "key": "SOAPAction",
+                "value": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ser=\"urn:MotocicletasService\">\n  <soap:Header/>\n  <soap:Body>\n    <ser:actualizarMotocicleta><id_motocicleta>6</id_motocicleta><marca>KTM</marca><modelo>Duke 200 NG</modelo><anio>2025</anio><cilindraje>200</cilindraje><precio>17400000</precio><stock>0</stock><estado>Agotada</estado></ser:actualizarMotocicleta>\n  </soap:Body>\n</soap:Envelope>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/gestion_motocicletas/ws",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "gestion_motocicletas",
+                "ws"
+              ]
+            }
+          }
+        },
+        {
+          "name": "09. actualizarMotocicleta inexistente (ID 9999)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "text/xml; charset=utf-8"
+              },
+              {
+                "key": "Accept",
+                "value": "text/xml"
+              },
+              {
+                "key": "SOAPAction",
+                "value": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ser=\"urn:MotocicletasService\">\n  <soap:Header/>\n  <soap:Body>\n    <ser:actualizarMotocicleta><id_motocicleta>9999</id_motocicleta><marca>Yamaha</marca><modelo>R15</modelo><anio>2024</anio><cilindraje>155</cilindraje><precio>12000000</precio><stock>1</stock><estado>Disponible</estado></ser:actualizarMotocicleta>\n  </soap:Body>\n</soap:Envelope>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/gestion_motocicletas/ws",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "gestion_motocicletas",
+                "ws"
+              ]
+            }
+          }
+        },
+        {
+          "name": "10. eliminarMotocicleta (ID 6)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "text/xml; charset=utf-8"
+              },
+              {
+                "key": "Accept",
+                "value": "text/xml"
+              },
+              {
+                "key": "SOAPAction",
+                "value": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ser=\"urn:MotocicletasService\">\n  <soap:Header/>\n  <soap:Body>\n    <ser:eliminarMotocicleta><id_motocicleta>6</id_motocicleta></ser:eliminarMotocicleta>\n  </soap:Body>\n</soap:Envelope>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/gestion_motocicletas/ws",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "gestion_motocicletas",
+                "ws"
+              ]
+            }
+          }
+        },
+        {
+          "name": "11. eliminarMotocicleta inexistente (ID 9999)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "text/xml; charset=utf-8"
+              },
+              {
+                "key": "Accept",
+                "value": "text/xml"
+              },
+              {
+                "key": "SOAPAction",
+                "value": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ser=\"urn:MotocicletasService\">\n  <soap:Header/>\n  <soap:Body>\n    <ser:eliminarMotocicleta><id_motocicleta>9999</id_motocicleta></ser:eliminarMotocicleta>\n  </soap:Body>\n</soap:Envelope>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/gestion_motocicletas/ws",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "gestion_motocicletas",
+                "ws"
+              ]
+            }
+          }
+        },
+        {
+          "name": "14. Datos mal formados XML (Fault)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "text/xml; charset=utf-8"
+              },
+              {
+                "key": "Accept",
+                "value": "text/xml"
+              },
+              {
+                "key": "SOAPAction",
+                "value": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ser=\"urn:MotocicletasService\">\n  <soap:Header/>\n  <soap:Body>\n    <ser:crearMotocicleta><marca>Yamaha</marca><modelo>MT-03</modelo><anio>no-numerico</anio><cilindraje>321</cilindraje><precio>27000000</precio><stock>1</stock><estado>Disponible</estado></ser:crearMotocicleta>\n  </soap:Body>\n</soap:Envelope>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/gestion_motocicletas/ws",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "gestion_motocicletas",
+                "ws"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "03_Interoperabilidad_Cruzada",
+      "item": [
+        {
+          "name": "12. Consultar desde REST registro creado por SOAP (ID 6)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/gestion_motocicletas/api/motocicletas/6",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "gestion_motocicletas",
+                "api",
+                "motocicletas",
+                "6"
+              ]
+            }
+          }
+        },
+        {
+          "name": "13. Consultar desde SOAP registro creado por REST (ID 6)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "text/xml; charset=utf-8"
+              },
+              {
+                "key": "Accept",
+                "value": "text/xml"
+              },
+              {
+                "key": "SOAPAction",
+                "value": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ser=\"urn:MotocicletasService\">\n  <soap:Header/>\n  <soap:Body>\n    <ser:obtenerMotocicleta><id_motocicleta>6</id_motocicleta></ser:obtenerMotocicleta>\n  </soap:Body>\n</soap:Envelope>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/gestion_motocicletas/ws",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "gestion_motocicletas",
+                "ws"
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

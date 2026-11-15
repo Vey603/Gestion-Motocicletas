@@ -1,0 +1,49 @@
+=== ESCENARIO 4: Crear una motocicleta válida ===
+
+[REST] POST -> http://localhost:8080/gestion_motocicletas/api/motocicletas
+--- SOLICITUD ---
+{
+  "marca": "Kawasaki",
+  "modelo": "Z400",
+  "anio": 2025,
+  "cilindraje": 399,
+  "precio": 28500000,
+  "stock": 2,
+  "estado": "Disponible"
+}
+--- RESPUESTA (HTTP 201) ---
+{
+  "mensaje": "Motocicleta creada correctamente",
+  "id_motocicleta": 6
+}
+Estado: APROBADO | HTTP 201: Motocicleta creada correctamente (id_motocicleta=6)
+
+[SOAP] POST (crearMotocicleta) -> http://localhost:8080/gestion_motocicletas/ws
+--- SOLICITUD ---
+<?xml version="1.0" encoding="UTF-8"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="urn:MotocicletasService">
+  <soap:Header/>
+  <soap:Body>
+    <ser:crearMotocicleta>
+      <marca>KTM</marca>
+      <modelo>Duke 200</modelo>
+      <anio>2025</anio>
+      <cilindraje>200</cilindraje>
+      <precio>16800000</precio>
+      <stock>3</stock>
+      <estado>Disponible</estado>
+    </ser:crearMotocicleta>
+  </soap:Body>
+</soap:Envelope>
+--- RESPUESTA (HTTP 200) ---
+<?xml version="1.0" ?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+  <SOAP-ENV:Header/>
+  <SOAP-ENV:Body>
+    <ns3:crearMotocicletaResponse xmlns:ns3="urn:MotocicletasService">
+      <mensaje>Motocicleta creada correctamente</mensaje>
+      <id_motocicleta>7</id_motocicleta>
+    </ns3:crearMotocicletaResponse>
+  </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
+Estado: APROBADO | HTTP 200: Motocicleta creada correctamente (id_motocicleta=7)

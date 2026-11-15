@@ -1,0 +1,16 @@
+=== ESCENARIO 12: Consultar desde REST un registro creado por SOAP ===
+
+[REST <- SOAP] GET -> http://localhost:8080/gestion_motocicletas/api/motocicletas/7
+--- RESPUESTA (HTTP 200) ---
+{
+  "id_motocicleta": 7,
+  "marca": "KTM",
+  "modelo": "Duke 200",
+  "anio": 2025,
+  "cilindraje": 200,
+  "precio": 16800000.0,
+  "stock": 3,
+  "estado": "Disponible",
+  "fecha_registro": "2026-11-15T18:00:38.65022"
+}
+Estado: APROBADO | HTTP 200: REST devolvió KTM Duke 200 (ID 7)

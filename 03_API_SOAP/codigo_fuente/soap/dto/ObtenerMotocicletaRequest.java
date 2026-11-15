@@ -1,0 +1,23 @@
+package com.gestion_motocicletas.soap.dto;
+
+import com.gestion_motocicletas.soap.config.SoapNamespaces;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlRootElement;
+import jakarta.xml.bind.annotation.XmlType;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@XmlRootElement(name = "obtenerMotocicleta", namespace = SoapNamespaces.MOTOCICLETAS)
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "", namespace = SoapNamespaces.MOTOCICLETAS, propOrder = {"idMotocicleta"})
+@Getter
+@Setter
+@NoArgsConstructor
+public class ObtenerMotocicletaRequest {
+
+    @XmlElement(name = "id_motocicleta", required = true)
+    private Integer idMotocicleta;
+}
