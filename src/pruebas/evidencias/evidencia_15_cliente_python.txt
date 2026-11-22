@@ -1,0 +1,213 @@
+=== SALIDA MODO DEMOSTRACIÓN INTEROPERABILIDAD (--demo) ===
+============================================================
+DEMOSTRACIÓN DE INTEROPERABILIDAD DESDE CLIENTE PYTHON
+============================================================
+
+========================================
+    INVENTARIO DE MOTOCICLETAS
+========================================
+Servicio seleccionado: REST
+
+ID: 2
+Marca: Bajaj
+Modelo: Pulsar NS200
+Año: 2025
+Cilindraje: 200 cc
+Precio: $12.500.000
+Stock: 3
+Estado: Disponible
+Fecha registro: 2026-11-15T18:00:28.185636
+
+Operación ejecutada correctamente.
+
+[Paso 1/6] Registrando motocicleta mediante API REST...
+REST -> Motocicleta creada correctamente (ID: 8)
+
+[Paso 2/6] Consultando ID 8 desde servicio SOAP...
+
+========================================
+    INVENTARIO DE MOTOCICLETAS
+========================================
+Servicio seleccionado: SOAP
+
+ID: 8
+Marca: Kawasaki
+Modelo: Z400
+Año: 2025
+Cilindraje: 399 cc
+Precio: $28.500.000
+Stock: 2
+Estado: Disponible
+Fecha registro: 2026-11-15T18:00:39
+
+Operación ejecutada correctamente.
+
+[Paso 3/6] Actualizando precio de ID 8 mediante SOAP...
+SOAP -> Motocicleta actualizada correctamente
+
+[Paso 4/6] Verificando nuevo precio de ID 8 desde REST...
+
+========================================
+    INVENTARIO DE MOTOCICLETAS
+========================================
+Servicio seleccionado: REST
+
+ID: 8
+Marca: Kawasaki
+Modelo: Z400 ABS
+Año: 2025
+Cilindraje: 399 cc
+Precio: $29.900.000
+Stock: 4
+Estado: Disponible
+Fecha registro: 2026-11-15T18:00:39.990013
+
+Operación ejecutada correctamente.
+
+[Paso 5/6] Registrando motocicleta mediante SOAP y consultando desde REST...
+SOAP -> Motocicleta creada correctamente (ID: 9)
+REST -> Consultado ID 9: KTM Duke 200 ($16.800.000)
+
+[Paso 6/6] Eliminando registros de prueba y comprobando inexistencia en ambos servicios...
+REST eliminar ID 8 -> Motocicleta eliminada correctamente
+SOAP eliminar ID 9 -> Motocicleta eliminada correctamente
+Confirmado en REST que ID 8 ya no existe -> HTTP 404: No existe una motocicleta con el ID 8
+Confirmado en SOAP que ID 8 ya no existe -> SOAP Fault (SOAP-ENV:Client): No existe una motocicleta con el ID 8
+Confirmado en REST que ID 9 ya no existe -> HTTP 404: No existe una motocicleta con el ID 9
+Confirmado en SOAP que ID 9 ya no existe -> SOAP Fault (SOAP-ENV:Client): No existe una motocicleta con el ID 9
+
+INTEROPERABILIDAD VERIFICADA EXITOSAMENTE.
+
+
+=== SALIDA MENÚ INTERACTIVO CONSOLA ===
+
+========================================
+SISTEMA DE INVENTARIO DE MOTOCICLETAS
+========================================
+Seleccione el servicio que desea utilizar:
+1. Consumir API REST
+2. Consumir servicio SOAP
+3. Salir
+Opción: 
+--- MENÚ DE OPERACIONES (REST) ---
+1. Listar motocicletas
+2. Consultar motocicleta por ID
+3. Registrar motocicleta
+4. Actualizar motocicleta
+5. Eliminar motocicleta
+6. Volver al menú principal
+Seleccione una opción: Ingrese el ID de la motocicleta: 
+========================================
+    INVENTARIO DE MOTOCICLETAS
+========================================
+Servicio seleccionado: REST
+
+ID: 2
+Marca: Bajaj
+Modelo: Pulsar NS200
+Año: 2025
+Cilindraje: 200 cc
+Precio: $12.500.000
+Stock: 3
+Estado: Disponible
+Fecha registro: 2026-11-15T18:00:28.185636
+
+Operación ejecutada correctamente.
+
+--- MENÚ DE OPERACIONES (REST) ---
+1. Listar motocicletas
+2. Consultar motocicleta por ID
+3. Registrar motocicleta
+4. Actualizar motocicleta
+5. Eliminar motocicleta
+6. Volver al menú principal
+Seleccione una opción: 
+========================================
+SISTEMA DE INVENTARIO DE MOTOCICLETAS
+========================================
+Seleccione el servicio que desea utilizar:
+1. Consumir API REST
+2. Consumir servicio SOAP
+3. Salir
+Opción: 
+--- MENÚ DE OPERACIONES (SOAP) ---
+1. Listar motocicletas
+2. Consultar motocicleta por ID
+3. Registrar motocicleta
+4. Actualizar motocicleta
+5. Eliminar motocicleta
+6. Volver al menú principal
+Seleccione una opción: 
+========================================
+    INVENTARIO DE MOTOCICLETAS
+========================================
+Servicio seleccionado: SOAP
+
+ID: 1
+Marca: Yamaha
+Modelo: FZ 2.0
+Año: 2024
+Cilindraje: 150 cc
+Precio: $10.500.000
+Stock: 5
+Estado: Disponible
+Fecha registro: 2026-11-15T18:00:28
+----------------------------------------
+ID: 2
+Marca: Bajaj
+Modelo: Pulsar NS200
+Año: 2025
+Cilindraje: 200 cc
+Precio: $12.500.000
+Stock: 3
+Estado: Disponible
+Fecha registro: 2026-11-15T18:00:28
+----------------------------------------
+ID: 3
+Marca: Honda
+Modelo: CB125F
+Año: 2023
+Cilindraje: 125 cc
+Precio: $8.200.000
+Stock: 0
+Estado: Agotada
+Fecha registro: 2026-11-15T18:00:28
+----------------------------------------
+ID: 4
+Marca: Suzuki
+Modelo: Gixxer 150
+Año: 2024
+Cilindraje: 150 cc
+Precio: $9.900.000
+Stock: 2
+Estado: Disponible
+Fecha registro: 2026-11-15T18:00:28
+----------------------------------------
+ID: 5
+Marca: AKT
+Modelo: NKD 125
+Año: 2022
+Cilindraje: 125 cc
+Precio: $5.800.000
+Stock: 1
+Estado: Inactiva
+Fecha registro: 2026-11-15T18:00:28
+
+Operación ejecutada correctamente.
+
+--- MENÚ DE OPERACIONES (SOAP) ---
+1. Listar motocicletas
+2. Consultar motocicleta por ID
+3. Registrar motocicleta
+4. Actualizar motocicleta
+5. Eliminar motocicleta
+6. Volver al menú principal
+Seleccione una opción: 
+========================================
+SISTEMA DE INVENTARIO DE MOTOCICLETAS
+========================================
+Seleccione el servicio que desea utilizar:
+1. Consumir API REST
+2. Consumir servicio SOAP
+3. Salir
+Opción: Saliendo del sistema de inventario...

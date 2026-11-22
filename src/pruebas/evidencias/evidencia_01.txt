@@ -1,0 +1,139 @@
+=== ESCENARIO 1: Consultar todas las motocicletas ===
+
+[REST] GET -> http://localhost:8080/gestion_motocicletas/api/motocicletas
+--- RESPUESTA (HTTP 200) ---
+[
+  {
+    "id_motocicleta": 1,
+    "marca": "Yamaha",
+    "modelo": "FZ 2.0",
+    "anio": 2024,
+    "cilindraje": 150,
+    "precio": 10500000.0,
+    "stock": 5,
+    "estado": "Disponible",
+    "fecha_registro": "2026-11-15T18:00:28.185636"
+  },
+  {
+    "id_motocicleta": 2,
+    "marca": "Bajaj",
+    "modelo": "Pulsar NS200",
+    "anio": 2025,
+    "cilindraje": 200,
+    "precio": 12500000.0,
+    "stock": 3,
+    "estado": "Disponible",
+    "fecha_registro": "2026-11-15T18:00:28.185636"
+  },
+  {
+    "id_motocicleta": 3,
+    "marca": "Honda",
+    "modelo": "CB125F",
+    "anio": 2023,
+    "cilindraje": 125,
+    "precio": 8200000.0,
+    "stock": 0,
+    "estado": "Agotada",
+    "fecha_registro": "2026-11-15T18:00:28.185636"
+  },
+  {
+    "id_motocicleta": 4,
+    "marca": "Suzuki",
+    "modelo": "Gixxer 150",
+    "anio": 2024,
+    "cilindraje": 150,
+    "precio": 9900000.0,
+    "stock": 2,
+    "estado": "Disponible",
+    "fecha_registro": "2026-11-15T18:00:28.185636"
+  },
+  {
+    "id_motocicleta": 5,
+    "marca": "AKT",
+    "modelo": "NKD 125",
+    "anio": 2022,
+    "cilindraje": 125,
+    "precio": 5800000.0,
+    "stock": 1,
+    "estado": "Inactiva",
+    "fecha_registro": "2026-11-15T18:00:28.185636"
+  }
+]
+Estado: APROBADO | HTTP 200: Lista JSON con 5 motocicletas iniciales
+
+[SOAP] POST (obtenerMotocicletas) -> http://localhost:8080/gestion_motocicletas/ws
+--- SOLICITUD ---
+<?xml version="1.0" encoding="UTF-8"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="urn:MotocicletasService">
+  <soap:Header/>
+  <soap:Body>
+    <ser:obtenerMotocicletas/>
+  </soap:Body>
+</soap:Envelope>
+--- RESPUESTA (HTTP 200) ---
+<?xml version="1.0" ?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+  <SOAP-ENV:Header/>
+  <SOAP-ENV:Body>
+    <ns3:obtenerMotocicletasResponse xmlns:ns3="urn:MotocicletasService">
+      <motocicletas>
+        <motocicleta>
+          <id_motocicleta>1</id_motocicleta>
+          <marca>Yamaha</marca>
+          <modelo>FZ 2.0</modelo>
+          <anio>2024</anio>
+          <cilindraje>150</cilindraje>
+          <precio>10500000.00</precio>
+          <stock>5</stock>
+          <estado>Disponible</estado>
+          <fecha_registro>2026-11-15T18:00:28</fecha_registro>
+        </motocicleta>
+        <motocicleta>
+          <id_motocicleta>2</id_motocicleta>
+          <marca>Bajaj</marca>
+          <modelo>Pulsar NS200</modelo>
+          <anio>2025</anio>
+          <cilindraje>200</cilindraje>
+          <precio>12500000.00</precio>
+          <stock>3</stock>
+          <estado>Disponible</estado>
+          <fecha_registro>2026-11-15T18:00:28</fecha_registro>
+        </motocicleta>
+        <motocicleta>
+          <id_motocicleta>3</id_motocicleta>
+          <marca>Honda</marca>
+          <modelo>CB125F</modelo>
+          <anio>2023</anio>
+          <cilindraje>125</cilindraje>
+          <precio>8200000.00</precio>
+          <stock>0</stock>
+          <estado>Agotada</estado>
+          <fecha_registro>2026-11-15T18:00:28</fecha_registro>
+        </motocicleta>
+        <motocicleta>
+          <id_motocicleta>4</id_motocicleta>
+          <marca>Suzuki</marca>
+          <modelo>Gixxer 150</modelo>
+          <anio>2024</anio>
+          <cilindraje>150</cilindraje>
+          <precio>9900000.00</precio>
+          <stock>2</stock>
+          <estado>Disponible</estado>
+          <fecha_registro>2026-11-15T18:00:28</fecha_registro>
+        </motocicleta>
+        <motocicleta>
+          <id_motocicleta>5</id_motocicleta>
+          <marca>AKT</marca>
+          <modelo>NKD 125</modelo>
+          <anio>2022</anio>
+          <cilindraje>125</cilindraje>
+          <precio>5800000.00</precio>
+          <stock>1</stock>
+          <estado>Inactiva</estado>
+          <fecha_registro>2026-11-15T18:00:28</fecha_registro>
+        </motocicleta>
+      </motocicletas>
+    </ns3:obtenerMotocicletasResponse>
+  </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
+Estado: APROBADO | HTTP 200: Sobre XML con 5 registros

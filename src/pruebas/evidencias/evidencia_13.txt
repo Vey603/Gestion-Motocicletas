@@ -1,0 +1,32 @@
+=== ESCENARIO 13: Consultar desde SOAP un registro creado por REST ===
+
+[SOAP <- REST] POST (obtenerMotocicleta) -> http://localhost:8080/gestion_motocicletas/ws
+--- SOLICITUD ---
+<?xml version="1.0" encoding="UTF-8"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="urn:MotocicletasService">
+  <soap:Header/>
+  <soap:Body>
+    <ser:obtenerMotocicleta><id_motocicleta>6</id_motocicleta></ser:obtenerMotocicleta>
+  </soap:Body>
+</soap:Envelope>
+--- RESPUESTA (HTTP 200) ---
+<?xml version="1.0" ?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+  <SOAP-ENV:Header/>
+  <SOAP-ENV:Body>
+    <ns3:obtenerMotocicletaResponse xmlns:ns3="urn:MotocicletasService">
+      <motocicleta>
+        <id_motocicleta>6</id_motocicleta>
+        <marca>Kawasaki</marca>
+        <modelo>Z400</modelo>
+        <anio>2025</anio>
+        <cilindraje>399</cilindraje>
+        <precio>28500000.00</precio>
+        <stock>2</stock>
+        <estado>Disponible</estado>
+        <fecha_registro>2026-11-15T18:00:38</fecha_registro>
+      </motocicleta>
+    </ns3:obtenerMotocicletaResponse>
+  </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
+Estado: APROBADO | HTTP 200: SOAP devolvió Kawasaki Z400 (ID 6)

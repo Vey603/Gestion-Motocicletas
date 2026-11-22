@@ -1,0 +1,47 @@
+=== ESCENARIO 2: Consultar un ID válido ===
+
+[REST] GET -> http://localhost:8080/gestion_motocicletas/api/motocicletas/2
+--- RESPUESTA (HTTP 200) ---
+{
+  "id_motocicleta": 2,
+  "marca": "Bajaj",
+  "modelo": "Pulsar NS200",
+  "anio": 2025,
+  "cilindraje": 200,
+  "precio": 12500000.0,
+  "stock": 3,
+  "estado": "Disponible",
+  "fecha_registro": "2026-11-15T18:00:28.185636"
+}
+Estado: APROBADO | HTTP 200: Bajaj Pulsar NS200 (ID 2)
+
+[SOAP] POST (obtenerMotocicleta) -> http://localhost:8080/gestion_motocicletas/ws
+--- SOLICITUD ---
+<?xml version="1.0" encoding="UTF-8"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="urn:MotocicletasService">
+  <soap:Header/>
+  <soap:Body>
+    <ser:obtenerMotocicleta><id_motocicleta>2</id_motocicleta></ser:obtenerMotocicleta>
+  </soap:Body>
+</soap:Envelope>
+--- RESPUESTA (HTTP 200) ---
+<?xml version="1.0" ?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+  <SOAP-ENV:Header/>
+  <SOAP-ENV:Body>
+    <ns3:obtenerMotocicletaResponse xmlns:ns3="urn:MotocicletasService">
+      <motocicleta>
+        <id_motocicleta>2</id_motocicleta>
+        <marca>Bajaj</marca>
+        <modelo>Pulsar NS200</modelo>
+        <anio>2025</anio>
+        <cilindraje>200</cilindraje>
+        <precio>12500000.00</precio>
+        <stock>3</stock>
+        <estado>Disponible</estado>
+        <fecha_registro>2026-11-15T18:00:28</fecha_registro>
+      </motocicleta>
+    </ns3:obtenerMotocicletaResponse>
+  </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
+Estado: APROBADO | HTTP 200: XML con Bajaj Pulsar NS200 (ID 2)

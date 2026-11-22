@@ -1,0 +1,51 @@
+=== ESCENARIO 8: Actualizar una motocicleta existente ===
+
+[REST] PUT -> http://localhost:8080/gestion_motocicletas/api/motocicletas/6
+--- SOLICITUD ---
+{
+  "marca": "Kawasaki",
+  "modelo": "Z400 ABS",
+  "anio": 2025,
+  "cilindraje": 399,
+  "precio": 29500000,
+  "stock": 4,
+  "estado": "Disponible"
+}
+--- RESPUESTA (HTTP 200) ---
+{
+  "id_motocicleta": 6,
+  "marca": "Kawasaki",
+  "modelo": "Z400 ABS",
+  "anio": 2025,
+  "cilindraje": 399,
+  "precio": 29500000,
+  "stock": 4,
+  "estado": "Disponible",
+  "fecha_registro": "2026-11-15T18:00:38.565179"
+}
+Estado: APROBADO | HTTP 200: Registro ID 6 actualizado en JSON
+
+[SOAP] POST (actualizarMotocicleta) -> http://localhost:8080/gestion_motocicletas/ws
+--- SOLICITUD ---
+<?xml version="1.0" encoding="UTF-8"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="urn:MotocicletasService">
+  <soap:Header/>
+  <soap:Body>
+    <ser:actualizarMotocicleta>
+      <id_motocicleta>7</id_motocicleta>
+      <marca>KTM</marca><modelo>Duke 200 NG</modelo><anio>2025</anio><cilindraje>200</cilindraje>
+      <precio>17400000</precio><stock>0</stock><estado>Agotada</estado>
+    </ser:actualizarMotocicleta>
+  </soap:Body>
+</soap:Envelope>
+--- RESPUESTA (HTTP 200) ---
+<?xml version="1.0" ?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+  <SOAP-ENV:Header/>
+  <SOAP-ENV:Body>
+    <ns3:actualizarMotocicletaResponse xmlns:ns3="urn:MotocicletasService">
+      <mensaje>Motocicleta actualizada correctamente</mensaje>
+    </ns3:actualizarMotocicletaResponse>
+  </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
+Estado: APROBADO | HTTP 200: Motocicleta actualizada correctamente

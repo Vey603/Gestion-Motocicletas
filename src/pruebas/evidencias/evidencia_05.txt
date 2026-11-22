@@ -1,0 +1,46 @@
+=== ESCENARIO 5: Crear con marca vacía ===
+
+[REST] POST -> http://localhost:8080/gestion_motocicletas/api/motocicletas
+--- SOLICITUD ---
+{
+  "marca": "",
+  "modelo": "X",
+  "anio": 2024,
+  "cilindraje": 150,
+  "precio": 8000000,
+  "stock": 1,
+  "estado": "Disponible"
+}
+--- RESPUESTA (HTTP 400) ---
+{
+  "statusCode": 400,
+  "date": "2026-11-15T23:00:38.706Z",
+  "message": "marca: La marca no puede estar vacía",
+  "description": "uri=/gestion_motocicletas/api/motocicletas"
+}
+Estado: APROBADO | HTTP 400: La marca no puede estar vacía
+
+[SOAP] POST (crearMotocicleta) -> http://localhost:8080/gestion_motocicletas/ws
+--- SOLICITUD ---
+<?xml version="1.0" encoding="UTF-8"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="urn:MotocicletasService">
+  <soap:Header/>
+  <soap:Body>
+    <ser:crearMotocicleta>
+      <marca></marca><modelo>X</modelo><anio>2024</anio><cilindraje>150</cilindraje>
+      <precio>8000000</precio><stock>1</stock><estado>Disponible</estado>
+    </ser:crearMotocicleta>
+  </soap:Body>
+</soap:Envelope>
+--- RESPUESTA (HTTP 500) ---
+<?xml version="1.0" ?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+  <SOAP-ENV:Header/>
+  <SOAP-ENV:Body>
+    <SOAP-ENV:Fault>
+      <faultcode>SOAP-ENV:Client</faultcode>
+      <faultstring xml:lang="en">La marca no puede estar vacía</faultstring>
+    </SOAP-ENV:Fault>
+  </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
+Estado: APROBADO | HTTP 500 SOAP Fault (Client): La marca no puede estar vacía
