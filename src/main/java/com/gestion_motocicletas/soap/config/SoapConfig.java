@@ -1,6 +1,5 @@
 package com.gestion_motocicletas.soap.config;
 
-import jakarta.xml.bind.UnmarshalException;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
@@ -32,14 +31,12 @@ public class SoapConfig {
     public SoapFaultMappingExceptionResolver soapFaultExceptionResolver() {
         SoapFaultMappingExceptionResolver resolver = new SoapFaultMappingExceptionResolver();
 
-        String mensajeXmlInvalido =
-                "CLIENT,El cuerpo XML de la solicitud no es válido o contiene tipos de datos mal formados";
         Properties mappings = new Properties();
         mappings.setProperty("MotocicletaNoEncontradaException", "CLIENT");
         mappings.setProperty("MotocicletaInvalidaException", "CLIENT");
-        mappings.setProperty(UnmarshallingFailureException.class.getName(), mensajeXmlInvalido);
-        mappings.setProperty(UnmarshalException.class.getName(), mensajeXmlInvalido);
-        mappings.setProperty(IllegalArgumentException.class.getName(), "CLIENT");
+        mappings.setProperty(
+                UnmarshallingFailureException.class.getName(),
+                "CLIENT,El cuerpo XML de la solicitud no es válido o contiene tipos de datos mal formados");
         resolver.setExceptionMappings(mappings);
 
         SoapFaultDefinition defaultFault = new SoapFaultDefinition();

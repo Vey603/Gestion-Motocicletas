@@ -1,7 +1,6 @@
 package com.gestion_motocicletas.soap.endpoint;
 
 import com.gestion_motocicletas.shared.entity.Motocicleta;
-import com.gestion_motocicletas.shared.exception.MotocicletaInvalidaException;
 import com.gestion_motocicletas.shared.service.MotocicletaService;
 import com.gestion_motocicletas.soap.config.SoapNamespaces;
 import com.gestion_motocicletas.soap.dto.ActualizarMotocicletaRequest;
@@ -32,9 +31,6 @@ public class MotocicletaEndpoint {
     @ResponsePayload
     public ObtenerMotocicletasResponse obtenerMotocicletas(
             @RequestPayload ObtenerMotocicletasRequest request) {
-        if (request == null) {
-            throw new MotocicletaInvalidaException("La solicitud SOAP no es válida");
-        }
         return new ObtenerMotocicletasResponse(
                 motocicletaSoapMapper.toXml(motocicletaService.findAll()));
     }
@@ -43,9 +39,6 @@ public class MotocicletaEndpoint {
     @ResponsePayload
     public ObtenerMotocicletaResponse obtenerMotocicleta(
             @RequestPayload ObtenerMotocicletaRequest request) {
-        if (request == null) {
-            throw new MotocicletaInvalidaException("La solicitud SOAP no es válida");
-        }
         Motocicleta motocicleta = motocicletaService.findById(request.getIdMotocicleta());
         return new ObtenerMotocicletaResponse(motocicletaSoapMapper.toXml(motocicleta));
     }
@@ -54,9 +47,6 @@ public class MotocicletaEndpoint {
     @ResponsePayload
     public CrearMotocicletaResponse crearMotocicleta(
             @RequestPayload CrearMotocicletaRequest request) {
-        if (request == null) {
-            throw new MotocicletaInvalidaException("La solicitud SOAP no es válida");
-        }
         Motocicleta motocicleta = motocicletaService.save(
                 motocicletaSoapMapper.toEntity(request));
         return new CrearMotocicletaResponse(
@@ -68,9 +58,6 @@ public class MotocicletaEndpoint {
     @ResponsePayload
     public ActualizarMotocicletaResponse actualizarMotocicleta(
             @RequestPayload ActualizarMotocicletaRequest request) {
-        if (request == null) {
-            throw new MotocicletaInvalidaException("La solicitud SOAP no es válida");
-        }
         motocicletaService.update(request.getIdMotocicleta(),
                 motocicletaSoapMapper.toEntity(request));
         return new ActualizarMotocicletaResponse("Motocicleta actualizada correctamente");
@@ -80,9 +67,6 @@ public class MotocicletaEndpoint {
     @ResponsePayload
     public EliminarMotocicletaResponse eliminarMotocicleta(
             @RequestPayload EliminarMotocicletaRequest request) {
-        if (request == null) {
-            throw new MotocicletaInvalidaException("La solicitud SOAP no es válida");
-        }
         motocicletaService.delete(request.getIdMotocicleta());
         return new EliminarMotocicletaResponse("Motocicleta eliminada correctamente");
     }
