@@ -1,125 +1,150 @@
 # Proyecto CRUD de Motocicletas mediante REST y SOAP
 
-Solución tecnológica integral para administrar el inventario de motocicletas compartiendo una **única base de datos relacional** y una **única capa de persistencia y lógica de negocio**, expuesta simultáneamente a través de una **API REST (HTTP + JSON)** y un **Servicio Web SOAP (XML + WSDL)**, junto con una **aplicación cliente de consola en Python**.
+Solución tecnológica integral para administrar el inventario de motocicletas compartiendo una **única base de datos relacional PostgreSQL** y una **única capa de persistencia y lógica de negocio**, expuesta simultáneamente a través de una **API REST (HTTP + JSON)** y un **Servicio Web SOAP (XML + WSDL)**, junto con una **aplicación cliente de consola en Python**.
 
 ---
 
 ## Arquitectura y Tecnologías
 
 - **Backend (REST + SOAP)**: Java 21, Spring Boot 4.1.2, Spring WebMVC, Spring Web Services (JAXB + WSDL 1.1), Spring Data JPA, Hibernate, Bean Validation, MapStruct y Lombok.
-- **Base de datos**:
-  - **Modo inmediato / pruebas (`h2`, activo por defecto)**: Base de datos H2 en memoria configurada en modo PostgreSQL, precargada automáticamente con los 5 registros iniciales del proyecto al iniciar la aplicación (sin requerir instalación externa).
-  - **Modo persistente (`postgres` / MySQL)**: Scripts SQL disponibles en `01_Base_Datos/gestion_motocicletas.sql` (PostgreSQL) y `01_Base_Datos/gestion_motocicletas_mysql.sql` (MySQL/MariaDB).
-- **Aplicación Cliente**: Python 3.9+ (`04_Cliente/codigo_fuente/cliente.py`) utilizando únicamente peticiones HTTP (`requests`), sin conexión directa a la base de datos.
+- **Base de datos**: PostgreSQL (puerto `5434`). El esquema y los 5 registros iniciales se cargan con `src/db/gestion_motocicletas.sql`.
+- **Aplicación Cliente**: Python 3.9+ (`src/client/cliente.py`) utilizando únicamente peticiones HTTP (`requests`), sin conexión directa a la base de datos.
 
 ---
 
-## Estructura de Entregables
+## Estructura del Proyecto
+
+La estructura se adaptó al proyecto Gradle: todo el contenido del proyecto (código, cliente, base de datos, pruebas y documentación) vive bajo `src/`. En la raíz solo quedan el README principal y los archivos de configuración que Gradle y el repositorio necesitan.
 
 ```text
-Gestion-Motocicletas/
-├── 01_Base_Datos/
-│   ├── gestion_motocicletas.sql          # Script SQL PostgreSQL
-│   ├── gestion_motocicletas_mysql.sql    # Script SQL MySQL/MariaDB
-│   └── modelo_datos.png                  # Diagrama del modelo de datos
-├── 02_API_REST/
-│   ├── codigo_fuente/                    # Controlador, DTOs, Mapper y Manejador de errores REST
-│   └── README.md                         # Documentación de endpoints y códigos HTTP
-├── 03_API_SOAP/
-│   ├── codigo_fuente/                    # Endpoint, configuración, DTOs y Mapper SOAP
-│   ├── contrato.wsdl                     # Contrato WSDL del servicio
-│   └── README.md                         # Documentación de operaciones XML y SOAP Fault
-├── 04_Cliente/
-│   ├── codigo_fuente/
-│   │   └── cliente.py                    # Aplicación cliente de consola en Python
-│   └── requirements.txt                  # Dependencias Python (requests)
-├── 05_Pruebas/
-│   ├── coleccion_postman.json            # Colección Postman v2.1 (REST, SOAP e interoperabilidad)
-│   ├── matriz_pruebas.xlsx               # Matriz con los 14 escenarios ejecutados
-│   └── evidencias/                       # Capturas PNG, logs .txt y reporte de ejecución real
-├── 06_Documentacion/
-│   ├── Documento_Tecnico_Gestion_Motocicletas.docx  # Documento maestro consolidado en Word
-│   ├── manual_tecnico.pdf
-│   ├── manual_usuario.pdf
-│   └── comparativo_rest_soap.pdf
-├── src/                                  # Proyecto Gradle completo (compilable y ejecutable)
-├── .env.example                          # Plantilla de variables de entorno (sin credenciales reales)
-└── README.md                             # Esta guía de instalación y ejecución
+gestion_motocicletas/
+├── README.md
+├── build.gradle
+├── settings.gradle
+├── gradlew
+├── gradlew.bat
+├── gradle/
+├── .env.example
+├── .gitattributes
+├── .gitignore
+└── src/
+    ├── main/
+    │   ├── java/com/gestion_motocicletas/
+    │   │   ├── Application.java
+    │   │   ├── rest/
+    │   │   │   ├── README.md
+    │   │   │   ├── controller/
+    │   │   │   ├── dto/
+    │   │   │   ├── exception/
+    │   │   │   └── mapper/
+    │   │   ├── soap/
+    │   │   │   ├── README.md
+    │   │   │   ├── config/
+    │   │   │   ├── dto/
+    │   │   │   ├── endpoint/
+    │   │   │   └── mapper/
+    │   │   └── shared/
+    │   │       ├── entity/
+    │   │       ├── exception/
+    │   │       ├── repository/
+    │   │       └── service/
+    │   └── resources/
+    │       ├── application.properties
+    │       └── wsdl/
+    │           └── motocicletas.wsdl
+    ├── client/
+    │   ├── cliente.py
+    │   └── requirements.txt
+    ├── db/
+    │   ├── gestion_motocicletas.sql
+    │   └── modelo_datos.png
+    ├── pruebas/
+    │   ├── coleccion_postman.json
+    │   ├── matriz_pruebas.xlsx
+    │   └── evidencias/
+    └── documentacion/
+        ├── manual_tecnico.pdf
+        ├── manual_usuario.pdf
+        └── comparativo_rest_soap.pdf
 ```
 
 ---
 
 ## Requisitos Previos
 
-1. **JDK 21 o superior** (verificado con Java 23).
+1. **JDK 21**.
 2. **Python 3.9 o superior** y `pip`.
-3. *(Opcional)* **PostgreSQL 18** o **MySQL/MariaDB** si se desea usar persistencia externa en lugar del perfil `h2` por defecto.
+3. **PostgreSQL** escuchando en el puerto `5434`.
 
 ---
 
 ## Instalación y Ejecución desde Cero
 
-### 1. Ejecutar el Servidor Backend (REST + SOAP)
+### 1. Crear la base de datos PostgreSQL
 
-#### Opción A: Modo inmediato con H2 en memoria (recomendado para pruebas rápidas)
-No requiere instalar ni crear bases de datos externas; al arrancar se crean las tablas y se cargan las 5 motocicletas iniciales automáticamente:
-
-```powershell
-cd Gestion-Motocicletas
-.\gradlew.bat bootRun
+```bash
+createdb -h localhost -p 5434 -U tu_usuario gestion_motocicletas
+psql -h localhost -p 5434 -U tu_usuario -d gestion_motocicletas \
+  -f src/db/gestion_motocicletas.sql
 ```
 
-En Linux/macOS:
+### 2. Configurar las credenciales
+
+Copie `.env.example` a `.env` (nunca suba `.env` al repositorio) y defina sus credenciales locales:
+
+```ini
+POSTGRES_USER=tu_usuario
+POSTGRES_PASSWORD=tu_contrasena
+```
+
+La aplicación lee estas variables a través de `src/main/resources/application.properties`; no se usan perfiles de Spring ni bases de datos en memoria.
+
+### 3. Ejecutar el servidor backend (REST + SOAP)
+
 ```bash
 ./gradlew bootRun
 ```
 
-#### Opción B: Modo PostgreSQL (persistente)
-1. Cree la base de datos y ejecute `01_Base_Datos/gestion_motocicletas.sql`:
-   ```bash
-   createdb -h localhost -p 5434 -U tu_usuario gestion_motocicletas
-   psql -h localhost -p 5434 -U tu_usuario -d gestion_motocicletas -f 01_Base_Datos/gestion_motocicletas.sql
-   ```
-2. Copie `.env.example` a `.env` y defina sus credenciales locales (nunca suba `.env` al repositorio):
-   ```ini
-   POSTGRES_USER=tu_usuario
-   POSTGRES_PASSWORD=tu_contrasena
-   ```
-3. Ejecute activando el perfil `postgres`:
-   ```powershell
-   $env:SPRING_PROFILES_ACTIVE="postgres"
-   .\gradlew.bat bootRun
-   ```
+En Windows:
+
+```powershell
+.\gradlew.bat bootRun
+```
 
 Una vez iniciado el servidor, los servicios quedan disponibles en:
 - **API REST**: `http://localhost:8080/gestion_motocicletas/api/motocicletas`
 - **Servicio SOAP**: `http://localhost:8080/gestion_motocicletas/ws`
 - **Contrato WSDL**: `http://localhost:8080/gestion_motocicletas/ws/motocicletas.wsdl`
 
----
+### 4. Ejecutar la aplicación cliente (Python)
 
-### 2. Ejecutar la Aplicación Cliente (Python)
-
-1. Instale las dependencias del cliente:
-   ```powershell
-   pip install -r 04_Cliente/requirements.txt
-   ```
-2. Inicie el menú interactivo de consola:
-   ```powershell
-   python 04_Cliente/codigo_fuente/cliente.py
-   ```
-3. *(Opcional)* Para ejecutar la demostración automatizada de interoperabilidad entre REST y SOAP:
-   ```powershell
-   python 04_Cliente/codigo_fuente/cliente.py --demo
-   ```
-
----
-
-### 3. Ejecutar las Pruebas Automatizadas
-
-Con Gradle (levanta contexto Spring Boot + H2 y valida los 14 escenarios obligatorios):
-```powershell
-.\gradlew.bat test
+```bash
+pip install -r src/client/requirements.txt
+python3 src/client/cliente.py
 ```
 
-También puede importar `05_Pruebas/coleccion_postman.json` en Postman mientras el servidor está en ejecución para probar cada endpoint manualmente.
+Para ejecutar la demostración automatizada de interoperabilidad entre REST y SOAP:
+
+```bash
+python3 src/client/cliente.py --demo
+```
+
+---
+
+## Pruebas Manuales
+
+El proyecto no incluye pruebas automatizadas ni JUnit. Las pruebas se ejecutan manualmente con Postman y con el cliente Python:
+
+- **Colección Postman**: `src/pruebas/coleccion_postman.json`. Los IDs de los registros creados se capturan automáticamente en las variables de colección `id_rest` e `id_soap`, por lo que la colección puede ejecutarse varias veces sin editar IDs fijos.
+- **Matriz de pruebas**: `src/pruebas/matriz_pruebas.xlsx`, con los 14 escenarios obligatorios.
+- **Evidencias**: `src/pruebas/evidencias/`, con capturas y logs de ejecución.
+
+Orden recomendado de la colección: consultas iniciales, creación REST y SOAP, interoperabilidad cruzada, actualización, validaciones y errores, eliminación y verificación de inexistencia.
+
+---
+
+## Documentación
+
+- Documentación de la API REST: `src/main/java/com/gestion_motocicletas/rest/README.md`
+- Documentación del servicio SOAP: `src/main/java/com/gestion_motocicletas/soap/README.md`
+- Manuales y comparativo: `src/documentacion/`

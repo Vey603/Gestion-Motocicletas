@@ -57,7 +57,7 @@ Servicio web RESTful implementado en **Java 21 + Spring Boot**, que expone el CR
 
 ## Estructura del código fuente
 
-El código fuente oficial compilado se encuentra en `src/main/java/com/gestion_motocicletas/rest/` (y replicado en `codigo_fuente/` de esta carpeta), compartiendo la capa de negocio y persistencia `shared` con el servicio SOAP:
+El código fuente del servicio REST se encuentra en `src/main/java/com/gestion_motocicletas/rest/`, compartiendo la capa de negocio y persistencia con el servicio SOAP en `src/main/java/com/gestion_motocicletas/shared/`:
 - `controller/MotocicletaRestController.java`
 - `dto/MotocicletaRequestDto.java`
 - `dto/MotocicletaResponseDto.java`

@@ -5,7 +5,7 @@ Servicio web basado en el protocolo **SOAP 1.1** y mensajes **XML**, implementad
 ## URLs y Espacio de Nombres
 
 - **Endpoint SOAP**: `http://localhost:8080/gestion_motocicletas/ws`
-- **Contrato WSDL**: `http://localhost:8080/gestion_motocicletas/ws/motocicletas.wsdl` (archivo físico en `contrato.wsdl` y `src/main/resources/wsdl/motocicletas.wsdl`)
+- **Contrato WSDL**: `http://localhost:8080/gestion_motocicletas/ws/motocicletas.wsdl` (archivo físico en `src/main/resources/wsdl/motocicletas.wsdl`)
 - **Espacio de nombres (`targetNamespace`)**: `urn:MotocicletasService`
 
 ## Operaciones disponibles
@@ -66,8 +66,11 @@ Cuando ocurre un error de validación (`MotocicletaInvalidaException`), registro
 
 ## Estructura del código fuente
 
-Implementado en `src/main/java/com/gestion_motocicletas/soap/` (y replicado en `codigo_fuente/` de esta carpeta):
+Implementado en `src/main/java/com/gestion_motocicletas/soap/`:
 - `config/SoapConfig.java` y `config/SoapNamespaces.java`
 - `endpoint/MotocicletaEndpoint.java`
 - `dto/*Request.java`, `*Response.java`, `MotocicletaXml.java`
 - `mapper/MotocicletaSoapMapper.java`
+
+El contrato WSDL canónico se publica desde `src/main/resources/wsdl/motocicletas.wsdl` en:
+`http://localhost:8080/gestion_motocicletas/ws/motocicletas.wsdl`

@@ -1,6 +1,6 @@
 # Evidencias de Ejecución Real - Sistema de Gestión de Motocicletas
 
-Todas las solicitudes y respuestas fueron ejecutadas directamente contra el servidor en ejecución (`http://localhost:8080/gestion_motocicletas`) con base de datos H2 en memoria precargada.
+Todas las solicitudes y respuestas fueron ejecutadas directamente contra el servidor en ejecución (`http://localhost:8080/gestion_motocicletas`) con base de datos PostgreSQL precargada.
 
 ## Escenario 1: Consultar todas las motocicletas
 - **REST** (`GET`): HTTP 200: Lista JSON con 5 motocicletas iniciales — **APROBADO**
